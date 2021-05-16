@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <div id="nav">
+  <div id="app" class="h-screen">
+    <!-- <div id="nav" class="py-24">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
