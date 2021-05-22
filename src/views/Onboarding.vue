@@ -13,28 +13,28 @@
     <template v-if="page != content.length">
       <button
         @click="next"
-        class="bg-black w-20 h-20 rounded-full text-white text-xl mx-auto mt-24"
+        class="bg-black w-20 h-20 rounded-full text-white mx-auto mt-24"
       >
-        -
+        <i class="fa fa-arrow-right text-3xl"></i>
       </button>
     </template>
     <template v-else>
-      <a href="/">
+      <router-link to="/">
         <button
           @click="notFirstTime"
-          class="bg-black w-full py-4 rounded-xl border-2 border-black text-white text-md mx-auto font-bold mt-24 mb-5"
+          class="bg-black w-full btn mt-24 text-white mb-5"
         >
           LOGIN
         </button>
-      </a>
-      <a href="/#/register/">
+      </router-link>
+      <router-link to="/register">
         <button
           @click="notFirstTime"
-          class="w-full py-4 rounded-xl border-green-500 border-2 text-green-500 text-md mx-auto font-bold"
+          class="w-full border-teal-500 text-teal-500 btn"
         >
           REGISTER
         </button>
-      </a>
+      </router-link>
     </template>
   </div>
 </template>

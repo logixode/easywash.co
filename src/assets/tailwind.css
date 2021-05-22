@@ -13,10 +13,56 @@
     @apply text-blue-600 underline;
   }
 }
+
 @tailwind components;
+@layer components {
+  .login-form-input {
+    @apply h-14 relative z-0 bg-gray-50 appearance-none border border-gray-100 rounded-md w-full py-2 px-3 text-gray-800 text-lg mb-3 leading-tight;
+    transition: 0.3s ease;
+  }
+  .login-form-input:focus {
+    @apply outline-none border-teal-500;
+    transition: 0.3s ease;
+  }
+  .login-form-icon {
+    @apply text-xl w-12 h-10 my-auto -mr-12 pl-5 relative z-10;
+  }
+  .btn {
+    @apply py-3 rounded-md border-2 border-transparent text-lg mx-auto font-bold;
+  }
+  .text-gray {
+    @apply text-lg text-gray-500 font-bold;
+    text-decoration: none;
+  }
+  .text-link {
+    @apply text-lg text-teal-500 font-bold;
+    text-decoration: none;
+  }
+  .icon-button {
+    @apply h-12 w-12 m-2;
+  }
+  .icon-button:focus {
+    @apply bg-black bg-opacity-10;
+    transition: 0.2s ease-out;
+  }
+  .appbar {
+    height: 4rem;
+  }
+  .body {
+    @apply pb-5;
+    /* height: calc(~"100vh-40px"); */
+    height: calc(100vh - 4rem);
+    overflow: scroll;
+  }
+}
+
 @tailwind utilities;
 
 * {
   margin: 0;
   padding: 0;
+}
+
+button:focus {
+  outline: none;
 }
