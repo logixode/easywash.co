@@ -1,5 +1,9 @@
 <template>
   <div class="bg-teal-500 text-left">
+    <modal :action="false" v-if="showModal">
+      <verifikasi-sukses>Pendaftaran Berhasil</verifikasi-sukses>
+    </modal>
+
     <div class="appbar text-white">
       <button class="icon-button" @click="$router.go(-1)">
         <i class="fa fa-arrow-left text-xl"></i>
@@ -9,7 +13,7 @@
     <div class="body login-form bg-white rounded-t-3xl pt-6 px-6">
       <h1 class="text-3xl text-center mb-6">Register</h1>
 
-      <form @submit="checkForm" method="POST">
+      <form @submit.prevent="submit" method="POST">
         <div class="my-3">
           <label class="block text-gray-700 text-lg mb-2" for="username">
             Username
@@ -18,14 +22,21 @@
             <i class="fa fa-user-o login-form-icon" aria-hidden="true"></i>
 
             <input
+              required
               type="text"
-              class="login-form-input pl-12"
-              v-model="username"
+              class="pl-12"
+              :class="
+                errors.username.status ? 'login-form-error' : 'login-form-input'
+              "
+              v-model="form.username"
               name="username"
-              placeholder="example@domain.com"
+              placeholder="John Doe"
               autocomplete="username"
             />
           </div>
+          <error-input v-if="errors.username.status">{{
+            errors.username.msg
+          }}</error-input>
         </div>
 
         <div class="my-3">
@@ -36,14 +47,21 @@
             <i class="fa fa-user login-form-icon" aria-hidden="true"></i>
 
             <input
+              required
               type="text"
-              class="login-form-input pl-12"
-              v-model="email"
+              class="pl-12"
+              :class="
+                errors.email.status ? 'login-form-error' : 'login-form-input'
+              "
+              v-model="form.email"
               name="email"
               placeholder="example@domain.com"
               autocomplete="email"
             />
           </div>
+          <error-input v-if="errors.email.status">{{
+            errors.email.msg
+          }}</error-input>
         </div>
 
         <div class="my-3">
@@ -54,14 +72,21 @@
             <i class="fa fa-lock login-form-icon" aria-hidden="true"></i>
 
             <input
+              required
               type="password"
-              class="login-form-input pl-12"
-              v-model="password"
+              class="pl-12"
+              :class="
+                errors.password.status ? 'login-form-error' : 'login-form-input'
+              "
+              v-model="form.password"
               name="password"
               placeholder="******************"
               autocomplete="current-password"
             />
           </div>
+          <error-input v-if="errors.password.status">{{
+            errors.password.msg
+          }}</error-input>
         </div>
 
         <div class="my-3">
@@ -72,14 +97,27 @@
             <i class="fa fa-lock login-form-icon" aria-hidden="true"></i>
 
             <input
+              required
               type="password"
-              class="login-form-input pl-12"
-              v-model="repeat_password"
+              class="pl-12"
+              :class="
+                errors.repeat_password.status
+                  ? 'login-form-error'
+                  : 'login-form-input'
+              "
+              v-model="form.repeat_password"
               name="repeat_password"
               placeholder="******************"
             />
           </div>
+          <error-input v-if="errors.repeat_password.status">{{
+            errors.repeat_password.msg
+          }}</error-input>
         </div>
+
+        <alert-msg v-if="errors.register.status" type="error">{{
+          errors.register.msg
+        }}</alert-msg>
 
         <button type="submit" class="bg-black w-full text-white btn my-3">
           Register
@@ -108,31 +146,85 @@
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+import ErrorInput from "@/components/ErrorInput";
+import AlertMsg from "@/components/AlertMsg";
+import Modal from "@/components/Modal";
+import VerifikasiSukses from "@/components/VerifikasiSukses";
+
 export default {
+  components: {
+    ErrorInput,
+    AlertMsg,
+    Modal,
+    VerifikasiSukses,
+  },
   data: () => ({
-    username: "",
-    email: "",
-    password: "",
-    repeat_password: "",
+    form: {
+      username: "",
+      email: "",
+      password: "",
+      repeat_password: "",
+    },
+    showModal: false,
 
-    errors: null,
+    errors: {
+      username: {
+        msg: "Username minimal harus 6 karakter",
+        status: false,
+      },
+      email: {
+        msg: "Format email salah",
+        status: false,
+      },
+      password: {
+        msg: "Password minimal harus 6 karakter",
+        status: false,
+      },
+      repeat_password: {
+        msg: "Password tidak sama",
+        status: false,
+      },
+      register: {
+        msg: null,
+        status: false,
+      },
+    },
   }),
+  validations: {
+    form: {
+      username: { required, min: minLength(6) },
+      email: { required, email },
+      password: { required, min: minLength(6) },
+      repeat_password: { required, min: minLength(6) },
+    },
+  },
   methods: {
-    checkForm: function (e) {
-      if (this.name && this.age) {
-        return true;
-      }
+    submit() {
+      let form = this.$v.form;
+      this.$v.form.$touch();
+      this.errors.username.status = !form.username.min;
+      this.errors.email.status = !form.email.email;
+      this.errors.password.status = !form.password.min;
 
-      this.errors = [];
+      if (this.form.password != this.form.repeat_password)
+        this.errors.repeat_password.status = true;
+      else {
+        this.errors.repeat_password.status = false;
 
-      if (!this.name) {
-        this.errors.push("Name required.");
+        if (!this.$v.form.$error) {
+          this.errors.register.status = false;
+          if (!this.errors.register.status) {
+            this.showModal = true;
+            setTimeout(() => {
+              this.$router.push("/");
+            }, 2500);
+          }
+        } else {
+          this.errors.register.status = true;
+          this.errors.register.msg = "something happen";
+        }
       }
-      if (!this.age) {
-        this.errors.push("Age required.");
-      }
-
-      e.preventDefault();
     },
   },
 };

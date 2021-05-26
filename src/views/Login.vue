@@ -1,5 +1,8 @@
 <template>
   <div class="bg-teal-500 text-left h-full">
+    <modal :action="false" v-if="showModal">
+      <verifikasi-sukses>Login Berhasil</verifikasi-sukses>
+    </modal>
     <div class="h-1/5 px-6 text-white">
       <h1 class="py-10 text-3xl">Hai, Selamat Datang Kembali :)</h1>
     </div>
@@ -9,7 +12,7 @@
     >
       <h1 class="text-3xl text-center mb-6">Login</h1>
 
-      <form @submit="checkForm" method="POST">
+      <form @submit.prevent="submit" method="POST">
         <div class="my-3">
           <label class="block text-gray-700 text-lg mb-2" for="email">
             Email
@@ -19,13 +22,19 @@
 
             <input
               type="text"
-              class="login-form-input pl-12"
-              v-model="email"
+              class="pl-12"
+              :class="
+                errors.email.status ? 'login-form-error' : 'login-form-input'
+              "
+              v-model="form.email"
               name="email"
               placeholder="example@domain.com"
               autocomplete="email"
             />
           </div>
+          <error-input v-if="errors.email.status">{{
+            errors.email.msg
+          }}</error-input>
         </div>
 
         <div class="my-3">
@@ -37,14 +46,24 @@
 
             <input
               type="password"
-              class="login-form-input pl-12"
-              v-model="password"
+              class="pl-12"
+              :class="
+                errors.password.status ? 'login-form-error' : 'login-form-input'
+              "
+              v-model="form.password"
               name="password"
               placeholder="******************"
               autocomplete="current-password"
             />
           </div>
+          <error-input v-if="errors.password.status">{{
+            errors.password.msg
+          }}</error-input>
         </div>
+
+        <alert-msg v-if="errors.login.status" type="error">{{
+          errors.login.msg
+        }}</alert-msg>
 
         <div class="text-right">
           <router-link to="/forgot-password" class="text-gray"
@@ -78,28 +97,66 @@
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+import ErrorInput from "@/components/ErrorInput";
+import AlertMsg from "@/components/AlertMsg";
+import Modal from "@/components/Modal";
+import VerifikasiSukses from "@/components/VerifikasiSukses";
+
 export default {
+  components: {
+    ErrorInput,
+    AlertMsg,
+    Modal,
+    VerifikasiSukses,
+  },
   data: () => ({
-    email: "",
-    password: "",
-    errors: null,
+    form: {
+      email: "",
+      password: "",
+    },
+    showModal: false,
+
+    errors: {
+      email: {
+        msg: "Format email salah",
+        status: false,
+      },
+      password: {
+        msg: "Password minimal harus 6 karakter",
+        status: false,
+      },
+      login: {
+        msg: null,
+        status: false,
+      },
+    },
   }),
+  validations: {
+    form: {
+      email: { required, email },
+      password: { required, min: minLength(6) },
+    },
+  },
   methods: {
-    checkForm: function (e) {
-      if (this.name && this.age) {
-        return true;
-      }
+    submit() {
+      let form = this.$v.form;
+      this.$v.form.$touch();
+      this.errors.email.status = !form.email.email;
+      this.errors.password.status = !form.password.min;
 
-      this.errors = [];
-
-      if (!this.name) {
-        this.errors.push("Name required.");
+      if (!this.$v.form.$error) {
+        this.errors.login.status = false;
+        if (!this.errors.login.status) {
+          this.showModal = true;
+          setTimeout(() => {
+            this.$router.push("/app");
+          }, 2500);
+        }
+      } else {
+        this.errors.login.status = true;
+        this.errors.login.msg = "something happen";
       }
-      if (!this.age) {
-        this.errors.push("Age required.");
-      }
-
-      e.preventDefault();
     },
   },
 };

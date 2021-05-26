@@ -1,5 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 @tailwind base;
 @layer base {
+  body,
+  html {
+    @apply overflow-x-hidden;
+  }
+  button,
+  button:focus {
+    @apply outline-none;
+  }
   h1 {
     @apply text-2xl font-bold;
   }
@@ -17,11 +30,19 @@
 @tailwind components;
 @layer components {
   .login-form-input {
-    @apply h-14 relative z-0 bg-gray-50 appearance-none border border-gray-100 rounded-md w-full py-2 px-3 text-gray-800 text-lg mb-3 leading-tight;
+    @apply h-14 relative z-0 bg-gray-50 appearance-none border border-gray-100 rounded-md w-full py-2 px-3 text-gray-800 text-lg leading-tight;
     transition: 0.3s ease;
   }
   .login-form-input:focus {
     @apply outline-none border-teal-500;
+    transition: 0.3s ease;
+  }
+  .login-form-error {
+    @apply h-14 relative z-0 bg-gray-50 appearance-none border border-red-500 rounded-md w-full py-2 px-3 text-gray-800 text-lg leading-tight;
+    transition: 0.3s ease;
+  }
+  .login-form-error:focus {
+    @apply outline-none;
     transition: 0.3s ease;
   }
   .login-form-icon {
@@ -54,15 +75,22 @@
     height: calc(100vh - 4rem);
     overflow: scroll;
   }
+  .header-app::before {
+    @apply bg-teal-500 absolute w-screen h-36 top-0 left-0;
+    content: "";
+    border-radius: 0 0 50% 50%;
+    transform: scale(1.5);
+    z-index: -1;
+  }
+  .profile-image {
+    @apply rounded-full;
+  }
+  .clamp-1 {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
 }
 
 @tailwind utilities;
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-button:focus {
-  outline: none;
-}

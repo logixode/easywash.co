@@ -1,7 +1,12 @@
 <template>
-  <div class="flex flex-col">
-    <img src="../assets/img/Check.png" alt="Sukses" srcset="" class="m-auto" />
-    <h2>Sukses Terferivikasi</h2>
+  <div class="text-center">
+    <img
+      src="../assets/img/Check.png"
+      alt="Sukses"
+      srcset=""
+      class="m-auto mb-5"
+    />
+    <h1><slot /></h1>
   </div>
 </template>
 

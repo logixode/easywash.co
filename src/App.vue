@@ -1,5 +1,9 @@
 <template>
-  <div id="app" class="h-screen">
+  <div
+    id="app"
+    class="h-screen"
+    style="overflow-x: hidden; position: relative; width: 100vw"
+  >
     <!-- <div id="nav" class="py-24">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
