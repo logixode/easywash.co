@@ -6,9 +6,24 @@
     </div>
 
     <!-- List Rekomendasi -->
-    <list-item></list-item>
-    <list-item></list-item>
-    <list-item></list-item>
+    <list-item
+      img="/img/1.png"
+      title="MND Laundry"
+      rating="5"
+      location="Singojuruh, Banyuwangi"
+    ></list-item>
+    <list-item
+      img="/img/2.png"
+      title="Heikikik Laundry"
+      rating="3"
+      location="Licin, Banyuwangi"
+    ></list-item>
+    <list-item
+      img="/img/3.png"
+      title="Cleanable Laundry"
+      rating="4"
+      location="Genteng, Banyuwangi"
+    ></list-item>
   </div>
 </template>
 

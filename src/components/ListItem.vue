@@ -3,21 +3,21 @@
     class="item-list my-5 p-2 border-2 bg-white border-gray-100 rounded-lg flex"
   >
     <img
-      src="../assets/img/profile.jpg"
+      :src="img"
       alt=""
       srcset=""
       class="rounded-lg h-24 w-20 object-cover"
     />
 
-    <div class="text-left ml-3 self-center">
-      <h3>MND Laundry</h3>
-      <div class="review text-sm">(100 reviews)</div>
+    <div class="text-left ml-3 self-center flex-1">
+      <h3>{{ title }}</h3>
+      <review :value="rating" />
 
       <p class="clamp-1 text-sm self-center">
         <span>
           <i class="fa fa-map-marker"></i>
         </span>
-        Singolatren, Singojruh, Banyuwangi
+        {{ location }}
       </p>
     </div>
 
@@ -26,7 +26,14 @@
 </template>
 
 <script>
-export default {};
+import Review from "@/components/Review.vue";
+
+export default {
+  components: {
+    Review,
+  },
+  props: ["img", "title", "rating", "location"],
+};
 </script>
 
 <style></style>
