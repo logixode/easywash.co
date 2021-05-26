@@ -7,14 +7,14 @@
         flex
         h-16
         py-2
-        px-5
+        px-2
         w-screen
         bottom-0
         left-0
         bg-white
         shadow-3xl
         z-10
-        justify-between
+        justify-around
       "
     >
       <button class="btn-menu" v-if="active == 'home'">
