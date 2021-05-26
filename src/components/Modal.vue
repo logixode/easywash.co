@@ -1,10 +1,35 @@
 <template>
   <div
-    class="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster"
+    class="
+      main-modal
+      fixed
+      w-full
+      h-100
+      inset-0
+      z-50
+      overflow-hidden
+      flex
+      justify-center
+      items-center
+      animated
+      fadeIn
+      faster
+    "
     style="background: rgba(0, 0, 0, 0.7)"
   >
     <div
-      class="border border-teal-500 shadow-lg modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto"
+      class="
+        border border-teal-500
+        shadow-lg
+        modal-container
+        bg-white
+        w-11/12
+        md:max-w-md
+        mx-auto
+        rounded
+        z-50
+        overflow-y-auto
+      "
     >
       <div class="modal-content py-4 text-left px-6">
         <!--Title-->
@@ -31,12 +56,30 @@
         <!--Footer-->
         <div class="flex justify-end pt-2" v-if="action">
           <button
-            class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+            class="
+              focus:outline-none
+              modal-close
+              px-4
+              bg-gray-400
+              p-3
+              rounded-lg
+              text-black
+              hover:bg-gray-300
+            "
           >
             Cancel
           </button>
           <button
-            class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"
+            class="
+              focus:outline-none
+              px-4
+              bg-teal-500
+              p-3
+              ml-3
+              rounded-lg
+              text-white
+              hover:bg-teal-400
+            "
           >
             Confirm
           </button>
@@ -55,5 +98,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

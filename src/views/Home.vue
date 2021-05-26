@@ -1,6 +1,7 @@
 <template>
-  <div class="home h-full">
-    <div class="flex p-6 text-white header-app">
+  <div class="home h-full pt-6">
+    <!-- header app -->
+    <div class="flex text-white header-app mb-6 px-6">
       <div class="text-left flex-1">
         <h2 class="clamp-1">Hai, Rohmad Kurniadi</h2>
         <p class="clamp-1">
@@ -12,7 +13,7 @@
       </div>
 
       <div class="flex items-center">
-        <button class="px-3 py-2 mr-1">
+        <button class="btn-icon mr-1">
           <i class="fa fa-bell text-2xl"></i>
         </button>
         <img
@@ -22,17 +23,36 @@
         />
       </div>
     </div>
+
+    <div class="home-body px-6">
+      <!-- Category menu -->
+      <category class="mb-6" />
+
+      <!-- Rekomendasi -->
+      <rekomendasi />
+
+      <!-- Tips -->
+      <tips />
+
+      <!-- bottom-bar -->
+      <bottom-bar active="home" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import VerifikasiSukses from "@/components/VerifikasiSukses.vue";
+import Category from "@/components/Home/Category.vue";
+import Rekomendasi from "@/components/Home/Rekomendasi.vue";
+import Tips from "@/components/Home/Tips.vue";
+import BottomBar from "@/components/BottomBar.vue";
 
 export default {
   name: "Home",
   components: {
-    // VerifikasiSukses,
+    Category,
+    Rekomendasi,
+    Tips,
+    BottomBar,
   },
 };
 </script>

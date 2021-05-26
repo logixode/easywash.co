@@ -8,7 +8,15 @@
     </div>
 
     <div
-      class="h-4/5 login-form bg-white rounded-t-3xl pt-6 px-6 border-none border-0"
+      class="
+        h-4/5
+        login-form
+        bg-white
+        rounded-t-3xl
+        pt-6
+        px-6
+        border-none border-0
+      "
     >
       <h1 class="text-3xl text-center mb-6">Login</h1>
 
@@ -161,6 +169,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

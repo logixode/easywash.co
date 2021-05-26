@@ -5,7 +5,7 @@
     </modal>
 
     <div class="appbar text-white">
-      <button class="icon-button" @click="$router.go(-1)">
+      <button class="btn-icon m-2" @click="$router.go(-1)">
         <i class="fa fa-arrow-left text-xl"></i>
       </button>
     </div>
@@ -229,6 +229,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>

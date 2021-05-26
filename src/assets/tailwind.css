@@ -59,12 +59,32 @@
     @apply text-lg text-teal-500 font-bold;
     text-decoration: none;
   }
-  .icon-button {
-    @apply h-12 w-12 m-2;
+  .btn-icon {
+    @apply h-12 w-12;
   }
-  .icon-button:focus {
-    @apply bg-black bg-opacity-10;
+  .btn-menu {
+    @apply px-3 text-teal-600 bg-teal-50 rounded-2xl flex items-center;
+  }
+  .btn-icon:focus,
+  .btn-menu:focus,
+  .btn-icontext:focus {
+    @apply bg-black rounded-lg bg-opacity-5;
     transition: 0.2s ease-out;
+  }
+  .btn-icontext {
+    @apply h-24 w-24 rounded-lg;
+  }
+  .btn-transparent {
+    @apply px-3 py-2 rounded-lg text-teal-500;
+  }
+  .btn-transparent:hover {
+    @apply text-teal-500 bg-teal-100;
+  }
+  .badge-primary {
+    @apply p-1 rounded-md text-teal-500 bg-teal-100;
+  }
+  .item-list:hover {
+    @apply bg-gray-50 cursor-pointer;
   }
   .appbar {
     height: 4rem;
@@ -73,6 +93,14 @@
     @apply pb-5;
     /* height: calc(~"100vh-40px"); */
     height: calc(100vh - 4rem);
+    overflow: scroll;
+  }
+  .header-app {
+    @apply h-14;
+  }
+  .home-body {
+    @apply pb-5;
+    height: calc(100vh - 6.5rem);
     overflow: scroll;
   }
   .header-app::before {
@@ -90,6 +118,22 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-lg p-6;
+  }
+  .horizontal-scroll {
+    @apply overflow-x-scroll inline-flex;
+    width: calc(100vw - 1.5rem);
+  }
+  .tips-item h2 {
+    @apply break-words;
+    width: 12rem;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  .tips-item {
+    @apply text-white h-48;
   }
 }
 
