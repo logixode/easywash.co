@@ -5,8 +5,19 @@ import router from "./router";
 import store from "./store";
 import "./assets/tailwind.css";
 import Vuelidate from "vuelidate";
+import VueOffline from "vue-offline";
 
+Vue.use(VueOffline);
 Vue.use(Vuelidate);
+Vue.mixin({
+  methods: {
+    changeTitleName() {
+      if (this.$route.name != "Home") {
+        document.title = "Hoki - " + this.$route.name;
+      } else document.title = "Hoki SmartLamp";
+    },
+  },
+});
 Vue.config.productionTip = false;
 
 new Vue({

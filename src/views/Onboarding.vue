@@ -22,7 +22,7 @@
       <router-link to="/">
         <button
           @click="notFirstTime"
-          class="bg-black w-full btn mt-24 text-white mb-5"
+          class="w-full mt-24 bg-black text-white mb-5 btn"
         >
           LOGIN
         </button>
@@ -47,20 +47,17 @@ export default {
       {
         img: "tracking",
         title: "Tracking",
-        body:
-          "Kamu bisa melakukan tracking melalui detail pesanan jadi kamu bisa terus memantau proses pencucian dan jika ada keluhan bisa contact mitra laundry.",
+        body: "Kamu bisa melakukan tracking melalui detail pesanan jadi kamu bisa terus memantau proses pencucian dan jika ada keluhan bisa contact mitra laundry.",
       },
       {
         img: "jaminan-kualitas",
         title: "Jaminan Cucian",
-        body:
-          "Jika cuci di official laundry kami memberikan jaminan barang cucian jika ada kerusakan atau barang cucian hilang uang akan kami kembalikan 100%.",
+        body: "Jika cuci di official laundry kami memberikan jaminan barang cucian jika ada kerusakan atau barang cucian hilang uang akan kami kembalikan 100%.",
       },
       {
         img: "easy-payment",
         title: "Mudah Pembayaran",
-        body:
-          "Laundry menyediakan banyak pilihan pembayaran seperti bank virtual account, cash, pembayaran online lainya dan dijamin keamanannya.",
+        body: "Laundry menyediakan banyak pilihan pembayaran seperti bank virtual account, cash, pembayaran online lainya dan dijamin keamanannya.",
       },
     ],
   }),
@@ -75,5 +72,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

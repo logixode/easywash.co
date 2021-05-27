@@ -4,13 +4,35 @@
     class="h-screen"
     style="overflow-x: hidden; position: relative; width: 100vw"
   >
+    <offline v-if="isOffline" />
     <!-- <div id="nav" class="py-24">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <router-view />
+    <router-view v-else />
   </div>
 </template>
+
+<script>
+import Offline from "@/components/Offline";
+
+export default {
+  components: {
+    Offline,
+  },
+  data: () => ({
+    // isOffline: false,
+  }),
+  watch: {
+    $route() {
+      this.changeTitleName();
+    },
+  },
+  created() {
+    this.changeTitleName();
+  },
+};
+</script>
 
 <style>
 #app {
