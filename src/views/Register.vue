@@ -4,12 +4,14 @@
       <verifikasi-sukses>Pendaftaran Berhasil</verifikasi-sukses>
     </modal>
 
+    <!-- appbar -->
     <div class="appbar text-white">
       <button class="btn-icon m-2" @click="$router.go(-1)">
         <i class="fa fa-arrow-left text-xl"></i>
       </button>
     </div>
 
+    <!-- body -->
     <div class="body login-form bg-white rounded-t-3xl pt-6 px-6">
       <h1 class="text-3xl text-center mb-6">Register</h1>
 

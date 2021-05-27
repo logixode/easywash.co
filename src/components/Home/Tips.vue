@@ -4,7 +4,7 @@
       <h1 class="pt-1">Tips</h1>
     </div>
 
-    <div class="horizontal-scroll">
+    <div class="horizontal-scroll py-2">
       <div class="card bg-teal-500 mr-5 tips-item">
         <h2 class="">Cara Transaksi Laundry</h2>
         <img

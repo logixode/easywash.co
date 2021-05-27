@@ -1,6 +1,17 @@
 <template>
   <div
-    class="item-list my-5 p-2 border-2 bg-white border-gray-100 rounded-lg flex"
+    class="
+      item-list
+      mb-5
+      mt-2
+      p-2
+      border-2
+      bg-white
+      border-gray-100
+      rounded-lg
+      flex
+    "
+    @click="$router.push(`/app/mitra/${id}`)"
   >
     <img
       :src="img"
@@ -32,7 +43,7 @@ export default {
   components: {
     Review,
   },
-  props: ["img", "title", "rating", "location"],
+  props: ["id", "img", "title", "rating", "location"],
 };
 </script>
 

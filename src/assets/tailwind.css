@@ -83,10 +83,20 @@
   .badge-primary {
     @apply p-1 rounded-md text-teal-500 bg-teal-100;
   }
+  .badge-danger {
+    @apply p-1 rounded-md text-red-500 bg-red-100;
+  }
+  .badge-warning {
+    @apply p-1 rounded-md text-yellow-500 bg-yellow-100;
+  }
+  .badge-info {
+    @apply p-1 rounded-md text-blue-500 bg-blue-100;
+  }
   .item-list:hover {
     @apply bg-gray-50 cursor-pointer;
   }
   .appbar {
+    @apply flex  items-center;
     height: 4rem;
   }
   .body {

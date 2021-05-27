@@ -13,8 +13,8 @@ Vue.mixin({
   methods: {
     changeTitleName() {
       if (this.$route.name != "Home") {
-        document.title = "Hoki - " + this.$route.name;
-      } else document.title = "Hoki SmartLamp";
+        document.title = "Easywash - " + this.$route.name;
+      } else document.title = "Easywash";
     },
   },
 });
