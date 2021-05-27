@@ -24,18 +24,18 @@
       </div>
     </div>
 
-    <div class="home-body px-6">
+    <div class="home-body">
       <!-- Category menu -->
-      <category class="mb-6" />
+      <category class="mb-6 mx-6" />
 
       <!-- Rekomendasi -->
-      <rekomendasi />
+      <rekomendasi class="px-6" />
 
       <!-- Tips -->
       <tips />
 
-      <!-- bottom-bar -->
-      <bottom-bar active="home" />
+      <!-- Navbar -->
+      <Navbar active="home" class="px-6" />
     </div>
   </div>
 </template>
@@ -44,7 +44,7 @@
 import Category from "@/components/Home/Category.vue";
 import Rekomendasi from "@/components/Home/Rekomendasi.vue";
 import Tips from "@/components/Home/Tips.vue";
-import BottomBar from "@/components/BottomBar.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   name: "Home",
@@ -52,7 +52,7 @@ export default {
     Category,
     Rekomendasi,
     Tips,
-    BottomBar,
+    Navbar,
   },
 };
 </script>

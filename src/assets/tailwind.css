@@ -133,8 +133,11 @@
     @apply bg-white rounded-xl shadow-lg p-6;
   }
   .horizontal-scroll {
-    @apply overflow-x-scroll inline-flex;
-    width: calc(100vw - 1.5rem);
+    @apply overflow-x-scroll inline-flex w-full;
+    /* width: calc(100vw - 1.5rem); */
+  }
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
   }
   .tips-item h2 {
     @apply break-words;

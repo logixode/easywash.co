@@ -1,11 +1,11 @@
 <template>
   <div class="">
-    <div class="flex justify-between mb-2">
+    <div class="flex justify-between mb-2 mx-6">
       <h1 class="pt-1">Tips</h1>
     </div>
 
-    <div class="horizontal-scroll py-2">
-      <div class="card bg-teal-500 mr-5 tips-item">
+    <div class="horizontal-scroll py-2 pl-6">
+      <div class="card shadow-none bg-teal-500 mr-5 tips-item">
         <h2 class="">Cara Transaksi Laundry</h2>
         <img
           src="../../assets/icon/transaksi.png"
@@ -13,7 +13,7 @@
           alt=""
         />
       </div>
-      <div class="card bg-yellow-400 mr-5 tips-item">
+      <div class="card shadow-none bg-yellow-400 tips-item">
         <h2 class="">Cara Pembayaran Laundry</h2>
         <img
           src="../../assets/icon/pembayaran.png"
@@ -21,6 +21,7 @@
           alt=""
         />
       </div>
+      <div class="w-12 p-3"></div>
     </div>
   </div>
 </template>

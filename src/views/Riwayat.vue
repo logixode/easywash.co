@@ -2,28 +2,33 @@
   <div class="bg-teal-500 h-full text-left">
     <!-- appbar -->
     <div class="appbar text-white">
-      <button class="btn-icon m-2" @click="$router.go(-1)">
+      <!-- <button class="btn-icon m-2" @click="$router.go(-1)">
         <i class="fa fa-arrow-left text-xl"></i>
-      </button>
+      </button> -->
       <h2 class="flex-1 text-center">Riwayat</h2>
-      <div class="w-12 m-2"></div>
+      <!-- <div class="w-12 m-2"></div> -->
     </div>
 
     <!-- body -->
-    <div class="body login-form bg-white rounded-t-3xl pt-6 px-6">
+    <div class="body bg-white rounded-t-3xl pt-6 px-6">
       <div v-for="(list, id) in dataLists" :key="id" @click="goto(id)">
         <riwayat-list :data="list"></riwayat-list>
       </div>
+
+      <!-- Navbar -->
+      <Navbar active="riwayat" class="px-6" />
     </div>
   </div>
 </template>
 
 <script>
 import RiwayatList from "@/components/Riwayat/RiwayatList.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   components: {
     RiwayatList,
+    Navbar,
   },
   data: () => ({
     dataLists: [
