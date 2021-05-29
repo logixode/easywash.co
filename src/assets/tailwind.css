@@ -48,9 +48,6 @@
   .login-form-icon {
     @apply text-xl w-12 h-10 my-auto -mr-12 pl-5 relative z-10;
   }
-  .btn {
-    @apply py-3 rounded-lg border-2 border-transparent text-lg mx-auto font-bold;
-  }
   .text-gray {
     @apply text-lg text-gray-500 font-bold;
     text-decoration: none;
@@ -58,6 +55,10 @@
   .text-link {
     @apply text-lg text-teal-500 font-bold;
     text-decoration: none;
+  }
+  .btn {
+    @apply py-3 rounded-lg border-2 border-transparent text-lg mx-auto font-bold;
+    transition: 0.2s ease-out;
   }
   .btn-icon {
     @apply h-12 w-12;
@@ -70,6 +71,23 @@
   .btn-icontext:focus {
     @apply bg-black rounded-lg bg-opacity-5;
     transition: 0.2s ease-out;
+  }
+  .btn-primary {
+    @apply bg-teal-500 text-white;
+  }
+  .btn-black {
+    @apply bg-black text-white;
+  }
+  .btn-primary:focus,
+  .btn-black:focus {
+    @apply bg-opacity-75;
+    transition: 0.2s ease-out;
+  }
+  .btn-outline-primary {
+    @apply border-teal-500 text-teal-500;
+  }
+  .btn-outline-black {
+    @apply border-black text-black;
   }
   .btn-icontext {
     @apply h-24 w-24 rounded-lg;
@@ -137,6 +155,9 @@
   }
   .card {
     @apply bg-white rounded-xl shadow-lg p-6;
+  }
+  .card-border {
+    @apply border-2 bg-white border-gray-100 rounded-lg;
   }
   .horizontal-scroll {
     @apply overflow-x-scroll inline-flex w-full;

@@ -20,18 +20,12 @@
     </template>
     <template v-else>
       <router-link to="/">
-        <button
-          @click="notFirstTime"
-          class="w-full mt-24 bg-black text-white mb-5 btn"
-        >
+        <button @click="notFirstTime" class="w-full mt-24 mb-5 btn btn-black">
           LOGIN
         </button>
       </router-link>
       <router-link to="/register">
-        <button
-          @click="notFirstTime"
-          class="w-full border-teal-500 text-teal-500 btn"
-        >
+        <button @click="notFirstTime" class="w-full btn btn-outline-primary">
           REGISTER
         </button>
       </router-link>

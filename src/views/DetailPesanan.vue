@@ -71,19 +71,19 @@
           <div class="flex">
             <p class="w-3/5">Kurir Antar Jemput :</p>
             <td class="w-2/5 pl-2">
-              <b>Rp. {{ data.harga }}</b>
+              <b>{{ formatRupiah(data.harga) }}</b>
             </td>
           </div>
           <div class="flex">
             <p class="w-3/5">Estimasi Selesai :</p>
             <p class="w-2/5 pl-2">
-              <b>Rp. {{ data.ongkir }}</b>
+              <b>{{ formatRupiah(data.ongkir) }}</b>
             </p>
           </div>
           <div class="flex">
             <p class="w-3/5">Alamat Pengiriman :</p>
             <p class="w-2/5 pl-2">
-              <b>Rp. {{ data.total_harga }}</b>
+              <b>{{ formatRupiah(data.total_harga) }}</b>
             </p>
             <!-- <p>{{ $route.params.id }}</p> -->
           </div>
@@ -91,9 +91,7 @@
       </div>
 
       <div class="px-6 mt-5">
-        <button class="btn bg-white border-teal-500 text-teal-500 w-full">
-          Hubungi Penjual
-        </button>
+        <button class="btn btn-outline-primary w-full">Hubungi Penjual</button>
       </div>
     </div>
   </div>

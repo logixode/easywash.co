@@ -19,14 +19,13 @@
   >
     <div
       class="
-        border border-teal-500
         shadow-lg
         modal-container
         bg-white
         w-11/12
         md:max-w-md
         mx-auto
-        rounded
+        rounded-lg
         z-50
         overflow-y-auto
       "

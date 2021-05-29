@@ -61,7 +61,7 @@
       </div>
       <div class="">
         <p class="text-xs text-gray-500">Total Pembayaran</p>
-        <h3>Rp.{{ data.total_harga }}</h3>
+        <h3>{{ formatRupiah(data.total_harga) }}</h3>
       </div>
     </div>
   </div>
