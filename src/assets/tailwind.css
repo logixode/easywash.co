@@ -80,6 +80,12 @@
   .btn-transparent:hover {
     @apply text-teal-500 bg-teal-100;
   }
+  .btn-tabbar {
+    @apply w-full pt-4 pb-3;
+  }
+  .btn-tabbar:disabled {
+    @apply font-bold text-teal-500 border-b-4 border-teal-500 border-solid;
+  }
   .badge-primary {
     @apply p-1 rounded-md text-teal-500 bg-teal-100;
   }
@@ -136,8 +142,9 @@
     @apply overflow-x-scroll inline-flex w-full;
     /* width: calc(100vw - 1.5rem); */
   }
-  .horizontal-scroll::-webkit-scrollbar {
-    display: none;
+  .horizontal-scroll::-webkit-scrollbar,
+  .body::-webkit-scrollbar {
+    @apply hidden;
   }
   .tips-item h2 {
     @apply break-words;

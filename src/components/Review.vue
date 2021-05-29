@@ -1,7 +1,7 @@
 <template>
   <div class="review">
     <i
-      class="fa fa-star"
+      class="fa fa-star mr-1"
       v-for="i in 5"
       :key="i"
       :class="i <= value ? 'text-yellow-400' : 'text-gray-400'"

@@ -2,17 +2,48 @@
   <div class="bg-teal-500 h-full text-left">
     <!-- appbar -->
     <div class="appbar text-white">
-      <button class="btn-icon m-2" @click="$router.go(-1)">
+      <button class="btn-icon m-2" @click="$router.replace('/app/')">
         <i class="fa fa-arrow-left text-xl"></i>
       </button>
-      <h2 class="flex-1 text-center capitalize">
-        Laundry {{ $route.params.type }}
-      </h2>
+      <h2 class="flex-1 text-center capitalize">Laundry</h2>
       <div class="w-12 m-2"></div>
     </div>
 
     <!-- body -->
-    <div class="body login-form bg-white rounded-t-3xl pt-6 px-6">
+    <div class="body login-form bg-white px-5">
+      <!-- Tab Bar -->
+      <div class="flex w-screen text-center -mx-5">
+        <div class="w-1/3">
+          <!-- {{ $route.params.type }} -->
+          <button
+            class="btn-tabbar"
+            @click="$router.push('/app/laundry/pakaian')"
+            :disabled="$route.params.type == 'pakaian'"
+          >
+            Pakaian
+          </button>
+        </div>
+        <div class="w-1/3">
+          <button
+            class="btn-tabbar"
+            @click="$router.push('/app/laundry/sepatu')"
+            :disabled="$route.params.type == 'sepatu'"
+          >
+            Sepatu
+          </button>
+        </div>
+        <div class="w-1/3">
+          <button
+            class="btn-tabbar"
+            @click="$router.push('/app/laundry/helm')"
+            :disabled="$route.params.type == 'helm'"
+          >
+            Helm
+          </button>
+        </div>
+      </div>
+      <hr class="mb-5" />
+
       <!-- List Rekomendasi -->
       <list-item
         :id="0"
