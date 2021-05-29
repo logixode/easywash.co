@@ -17,7 +17,7 @@
       </div>
 
       <!-- Navbar -->
-      <Navbar active="pesan" class="px-6" />
+      <Navbar class="px-6" />
     </div>
   </div>
 </template>

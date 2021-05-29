@@ -1,17 +1,5 @@
 <template>
-  <div
-    class="
-      item-list
-      mb-5
-      mt-2
-      py-2
-      px-3
-      border-2
-      bg-white
-      border-gray-100
-      rounded-lg
-    "
-  >
+  <div class="item-list mb-5 mt-2 py-2 px-3 card-border">
     <div class="flex justify-between mb-3">
       <div class="">
         <h3>{{ data.status }}</h3>

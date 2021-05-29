@@ -16,7 +16,7 @@
       </div>
 
       <!-- Navbar -->
-      <Navbar active="riwayat" class="px-6" />
+      <Navbar class="px-6" />
     </div>
   </div>
 </template>

@@ -35,7 +35,7 @@
       <tips />
 
       <!-- Navbar -->
-      <Navbar active="home" class="px-6" />
+      <Navbar class="px-6" />
     </div>
   </div>
 </template>

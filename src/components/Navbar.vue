@@ -3,6 +3,7 @@
     <div class="h-16 mt-2"></div>
     <div
       class="
+        rounded-t-3xl
         fixed
         flex
         h-16
@@ -17,7 +18,7 @@
         justify-around
       "
     >
-      <button class="btn-menu" v-if="active == 'home'">
+      <button class="btn-menu" v-if="$route.name == 'Home'">
         <i class="fa fa-home text-teal-500 text-2xl mr-1"></i>
         Beranda
       </button>
@@ -26,7 +27,7 @@
           <i class="fa fa-home text-gray-500 text-2xl"></i>
         </button>
       </router-link>
-      <button class="btn-menu" v-if="active == 'riwayat'">
+      <button class="btn-menu" v-if="$route.name == 'Riwayat'">
         <i class="fa fa-history text-teal-500 text-2xl mr-1"></i>
         Riwayat
       </button>
@@ -35,7 +36,7 @@
           <i class="fa fa-history text-gray-500 text-2xl"></i>
         </button>
       </router-link>
-      <button class="btn-menu" v-if="active == 'pesan'">
+      <button class="btn-menu" v-if="$route.name == 'Pesan'">
         <i class="fa fa-envelope text-teal-500 text-2xl mr-1"></i>
         Pesan
       </button>
@@ -44,7 +45,7 @@
           <i class="fa fa-envelope text-gray-500 text-2xl"></i>
         </button>
       </router-link>
-      <button class="btn-menu" v-if="active == 'profil'">
+      <button class="btn-menu" v-if="$route.name == 'Profil'">
         <i class="fa fa-user text-teal-500 text-2xl mr-1"></i>
         Profil
       </button>
@@ -59,7 +60,10 @@
 
 <script>
 export default {
-  props: ["active"],
+  // props: ["$route.name"],
+  mounted() {
+    // console.log($route.name);
+  },
 };
 </script>
 

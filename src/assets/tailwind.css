@@ -120,7 +120,7 @@
     @apply bg-gray-50 cursor-pointer;
   }
   .appbar {
-    @apply flex  items-center;
+    @apply flex items-center;
     height: 4rem;
   }
   .body {
@@ -164,6 +164,7 @@
     /* width: calc(100vw - 1.5rem); */
   }
   .horizontal-scroll::-webkit-scrollbar,
+  .overflow-y-scroll::-webkit-scrollbar,
   .body::-webkit-scrollbar {
     @apply hidden;
   }
