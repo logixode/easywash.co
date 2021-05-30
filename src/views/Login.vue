@@ -59,7 +59,7 @@
               "
               v-model="form.password"
               name="password"
-              placeholder="******************"
+              placeholder="•••••••••"
               autocomplete="current-password"
             />
           </div>

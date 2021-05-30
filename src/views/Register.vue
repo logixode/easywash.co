@@ -87,7 +87,7 @@
               "
               v-model="form.password"
               name="password"
-              placeholder="******************"
+              placeholder="•••••••••"
               autocomplete="current-password"
             />
           </div>
@@ -114,7 +114,7 @@
               "
               v-model="form.repeat_password"
               name="repeat_password"
-              placeholder="******************"
+              placeholder="•••••••••"
             />
           </div>
           <error-input v-if="errors.repeat_password.status">{{
