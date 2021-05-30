@@ -6,6 +6,9 @@ import store from "./store";
 import "./assets/tailwind.css";
 import Vuelidate from "vuelidate";
 import VueOffline from "vue-offline";
+import "./firebase";
+// import { db } from "./firebase";
+import { auth } from "./firebase";
 
 Vue.use(VueOffline);
 Vue.use(Vuelidate);
@@ -39,8 +42,15 @@ Vue.mixin({
 });
 Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+auth().onAuthStateChanged((firebaseUser) => {
+  new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+    mounted() {
+      if (firebaseUser) {
+        store.dispatch("autoSignIn", firebaseUser);
+      }
+    },
+  }).$mount("#app");
+});

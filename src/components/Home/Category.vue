@@ -1,6 +1,6 @@
 <template>
   <div class="card flex justify-between p-5">
-    <button class="btn-icontext" @click="$router.push('/app/laundry/pakaian')">
+    <button class="btn-icontext" @click="$router.push('/laundry/pakaian')">
       <img
         src="../../assets/icon/Pakaian.png"
         alt=""
@@ -8,7 +8,7 @@
       />
       <p class="text-bold">Pakaian</p>
     </button>
-    <button class="btn-icontext" @click="$router.push('/app/laundry/sepatu')">
+    <button class="btn-icontext" @click="$router.push('/laundry/sepatu')">
       <img
         src="../../assets/icon/Sepatu.png"
         alt=""
@@ -16,7 +16,7 @@
       />
       <p class="text-bold">Sepatu</p>
     </button>
-    <button class="btn-icontext" @click="$router.push('/app/laundry/helm')">
+    <button class="btn-icontext" @click="$router.push('/laundry/helm')">
       <img
         src="../../assets/icon/Helmet.png"
         alt=""

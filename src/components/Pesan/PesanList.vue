@@ -1,5 +1,5 @@
 <template>
-  <div class="" @click="$router.push(`/app/pesan/${data.id}`)">
+  <div class="" @click="$router.push(`/pesan/${data.id}`)">
     <div class="flex px-6">
       <img
         :src="data.img"

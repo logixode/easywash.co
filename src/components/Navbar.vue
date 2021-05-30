@@ -22,7 +22,7 @@
         <i class="fa fa-home text-teal-500 text-2xl mr-1"></i>
         Beranda
       </button>
-      <router-link to="/app" v-else>
+      <router-link to="/" v-else>
         <button class="btn-icon">
           <i class="fa fa-home text-gray-500 text-2xl"></i>
         </button>
@@ -31,7 +31,7 @@
         <i class="fa fa-history text-teal-500 text-2xl mr-1"></i>
         Riwayat
       </button>
-      <router-link to="/app/riwayat" v-else>
+      <router-link to="/riwayat" v-else>
         <button class="btn-icon">
           <i class="fa fa-history text-gray-500 text-2xl"></i>
         </button>
@@ -40,7 +40,7 @@
         <i class="fa fa-envelope text-teal-500 text-2xl mr-1"></i>
         Pesan
       </button>
-      <router-link to="/app/pesan" v-else>
+      <router-link to="/pesan" v-else>
         <button class="btn-icon">
           <i class="fa fa-envelope text-gray-500 text-2xl"></i>
         </button>
@@ -49,7 +49,7 @@
         <i class="fa fa-user text-teal-500 text-2xl mr-1"></i>
         Profil
       </button>
-      <router-link to="/app/profil" v-else>
+      <router-link to="/profil" v-else>
         <button class="btn-icon">
           <i class="fa fa-user text-gray-500 text-2xl"></i>
         </button>

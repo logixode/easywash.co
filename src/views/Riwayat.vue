@@ -69,7 +69,7 @@ export default {
   }),
   methods: {
     goto(id) {
-      this.$router.push(`/app/detail_pesanan/${id}`);
+      this.$router.push(`/detail_pesanan/${id}`);
     },
   },
 };

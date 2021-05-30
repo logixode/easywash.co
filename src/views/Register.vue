@@ -1,8 +1,13 @@
 <template>
   <div class="bg-teal-500 text-left">
-    <modal :action="false" v-if="showModal">
-      <verifikasi-sukses>Pendaftaran Berhasil</verifikasi-sukses>
-    </modal>
+    <transition name="fade">
+      <modal action="OK" v-show="showModal" @actionClidked="actionChildClicked">
+        <verifikasi type="sukses">Pendaftaran Berhasil</verifikasi>
+        <p class="text-lg">
+          Silahkan cek email anda untuk melakukan verifikasi.
+        </p>
+      </modal>
+    </transition>
 
     <!-- appbar -->
     <div class="appbar text-white">
@@ -21,7 +26,7 @@
             Username
           </label>
           <div class="flex">
-            <i class="fa fa-user-o login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-user-o login-form-icon py-1" aria-hidden="true"></i>
 
             <input
               required
@@ -46,7 +51,7 @@
             Email
           </label>
           <div class="flex">
-            <i class="fa fa-user login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-user login-form-icon py-1" aria-hidden="true"></i>
 
             <input
               required
@@ -71,7 +76,7 @@
             Password
           </label>
           <div class="flex">
-            <i class="fa fa-lock login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-lock login-form-icon py-1" aria-hidden="true"></i>
 
             <input
               required
@@ -96,7 +101,7 @@
             Ulangi Password
           </label>
           <div class="flex">
-            <i class="fa fa-lock login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-lock login-form-icon py-1" aria-hidden="true"></i>
 
             <input
               required
@@ -126,8 +131,8 @@
         </button>
         <p class="text-center text-gray">Atau</p>
         <button
-          type="submit"
           class="border-2 border-gray-200 w-full btn my-3 flex justify-center"
+          @click="loginGoogle"
         >
           <img
             src="../assets/img/google-icon.svg"
@@ -140,7 +145,7 @@
 
         <p class="text-center text-gray">
           Sudah memiliki Akun?
-          <router-link to="/" class="text-link">Login</router-link>
+          <router-link to="/login" class="text-link">Login</router-link>
         </p>
       </form>
     </div>
@@ -152,14 +157,16 @@ import { required, email, minLength } from "vuelidate/lib/validators";
 import ErrorInput from "@/components/ErrorInput";
 import AlertMsg from "@/components/AlertMsg";
 import Modal from "@/components/Modal";
-import VerifikasiSukses from "@/components/VerifikasiSukses";
+import Verifikasi from "@/components/Verifikasi";
+import { db } from "../firebase";
+import { auth } from "../firebase";
 
 export default {
   components: {
     ErrorInput,
     AlertMsg,
     Modal,
-    VerifikasiSukses,
+    Verifikasi,
   },
   data: () => ({
     form: {
@@ -217,16 +224,79 @@ export default {
         if (!this.$v.form.$error) {
           this.errors.register.status = false;
           if (!this.errors.register.status) {
-            this.showModal = true;
-            setTimeout(() => {
-              this.$router.push("/");
-            }, 2500);
+            this.userSignUp();
           }
-        } else {
-          this.errors.register.status = true;
-          this.errors.register.msg = "something happen";
         }
       }
+    },
+    userSignUp() {
+      this.$store.commit("setLoading", true);
+      auth()
+        .createUserWithEmailAndPassword(this.form.email, this.form.password)
+        .then(async (val) => {
+          let user = {
+            name: this.form.username,
+            email: this.form.email,
+            uid: val.user.uid,
+          };
+          await auth()
+            .currentUser.sendEmailVerification()
+            // .then(() => ())
+            .catch((error) => console.log(error));
+          await this.$store.commit("setLoading", false);
+          await db
+            .collection("users")
+            .add(user)
+            .then(() => {
+              this.$store.commit("setUser", user);
+              this.showModal = true;
+              setTimeout(() => {
+                this.$router.push("/");
+              }, 2500);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          this.$store.commit("setLoading", false);
+          this.errors.register.status = true;
+          this.errors.register.msg = error.message;
+        });
+    },
+    actionChildClicked(val) {
+      this.showModal = val.status;
+    },
+    loginGoogle() {
+      // var provider = new auth.GoogleAuthProvider();
+      // auth
+      //   .signInWithPopup(provider)
+      //   .then((result) => {
+      //     /** @type {firebase.auth.OAuthCredential} */
+      //     var credential = result.credential;
+      //     // This gives you a Google Access Token. You can use it to access the Google API.
+      //     var token = credential.accessToken;
+      //     // // The signed-in user info.
+      //     var user = result.user;
+      //     console.log("credential", credential);
+      //     console.log("token", token);
+      //     console.log("user", user);
+      //     // ...
+      //   })
+      //   .catch((error) => {
+      //     // Handle Errors here.
+      //     var errorCode = error.code;
+      //     var errorMessage = error.message;
+      //     // // The email of the user's account used.
+      //     var email = error.email;
+      //     // // The firebase.auth.AuthCredential type that was used.
+      //     var credential = error.credential;
+      //     // ...
+      //     console.log("error", errorCode);
+      //     console.log("error msg", errorMessage);
+      //     console.log("email", email);
+      //     console.log("credential", credential);
+      //   });
     },
   },
 };

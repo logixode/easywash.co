@@ -1,8 +1,5 @@
 <template>
   <div class="bg-teal-500 text-left h-full">
-    <modal :action="false" v-if="showModal">
-      <verifikasi-sukses>Login Berhasil</verifikasi-sukses>
-    </modal>
     <div class="h-1/5 px-6 text-white">
       <h1 class="py-10 text-3xl">Hai, Selamat Datang Kembali :)</h1>
     </div>
@@ -26,9 +23,10 @@
             Email
           </label>
           <div class="flex">
-            <i class="fa fa-user login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-user login-form-icon py-1" aria-hidden="true"></i>
 
             <input
+              required
               type="text"
               class="pl-12"
               :class="
@@ -50,9 +48,10 @@
             Password
           </label>
           <div class="flex">
-            <i class="fa fa-lock login-form-icon" aria-hidden="true"></i>
+            <i class="fa fa-lock login-form-icon py-1" aria-hidden="true"></i>
 
             <input
+              required
               type="password"
               class="pl-12"
               :class="
@@ -108,22 +107,19 @@
 import { required, email, minLength } from "vuelidate/lib/validators";
 import ErrorInput from "@/components/ErrorInput";
 import AlertMsg from "@/components/AlertMsg";
-import Modal from "@/components/Modal";
-import VerifikasiSukses from "@/components/VerifikasiSukses";
+import { auth } from "../firebase";
+// import { db } from "../firebase";
 
 export default {
   components: {
     ErrorInput,
     AlertMsg,
-    Modal,
-    VerifikasiSukses,
   },
   data: () => ({
     form: {
       email: "",
       password: "",
     },
-    showModal: false,
 
     errors: {
       email: {
@@ -156,15 +152,26 @@ export default {
       if (!this.$v.form.$error) {
         this.errors.login.status = false;
         if (!this.errors.login.status) {
-          this.showModal = true;
-          setTimeout(() => {
-            this.$router.push("/app");
-          }, 2500);
+          this.login();
         }
-      } else {
-        this.errors.login.status = true;
-        this.errors.login.msg = "something happen";
       }
+    },
+    login() {
+      this.$store.commit("setLoading", true);
+      auth()
+        .signInWithEmailAndPassword(this.form.email, this.form.password)
+        .then((val) => {
+          let user = val.user;
+
+          this.$store.commit("setUID", user.uid);
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          this.$store.commit("setLoading", false);
+          this.errors.login.status = true;
+          this.errors.login.msg = error.message;
+          console.log(error);
+        });
     },
   },
 };

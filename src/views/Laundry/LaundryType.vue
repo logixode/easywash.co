@@ -2,7 +2,7 @@
   <div class="bg-teal-500 h-full text-left">
     <!-- appbar -->
     <div class="appbar text-white">
-      <button class="btn-icon m-2" @click="$router.replace('/app/')">
+      <button class="btn-icon m-2" @click="$router.replace('/')">
         <i class="fa fa-arrow-left text-xl"></i>
       </button>
       <h2 class="flex-1 text-center capitalize">Laundry</h2>
@@ -17,7 +17,7 @@
           <!-- {{ $route.params.type }} -->
           <button
             class="btn-tabbar"
-            @click="$router.push('/app/laundry/pakaian')"
+            @click="$router.push('/laundry/pakaian')"
             :disabled="$route.params.type == 'pakaian'"
           >
             Pakaian
@@ -26,7 +26,7 @@
         <div class="w-1/3">
           <button
             class="btn-tabbar"
-            @click="$router.push('/app/laundry/sepatu')"
+            @click="$router.push('/laundry/sepatu')"
             :disabled="$route.params.type == 'sepatu'"
           >
             Sepatu
@@ -35,7 +35,7 @@
         <div class="w-1/3">
           <button
             class="btn-tabbar"
-            @click="$router.push('/app/laundry/helm')"
+            @click="$router.push('/laundry/helm')"
             :disabled="$route.params.type == 'helm'"
           >
             Helm

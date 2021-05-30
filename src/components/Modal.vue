@@ -3,19 +3,16 @@
     class="
       main-modal
       fixed
-      w-full
-      h-100
+      w-screen
+      h-screen
       inset-0
       z-50
       overflow-hidden
       flex
       justify-center
       items-center
-      animated
-      fadeIn
-      faster
+      bg-black bg-opacity-70
     "
-    style="background: rgba(0, 0, 0, 0.7)"
   >
     <div
       class="
@@ -49,11 +46,30 @@
           </div>
         </div>
         <!--Body-->
-        <div class="my-5">
+        <div class="my-5 text-center">
           <slot />
         </div>
+
         <!--Footer-->
-        <div class="flex justify-end pt-2" v-if="action">
+        <div class="flex justify-end pt-2" v-if="action == 'OK'">
+          <button
+            class="
+              focus:outline-none
+              px-4
+              bg-teal-500
+              p-3
+              rounded-lg
+              font-bold
+              text-white
+              hover:bg-teal-400
+              w-full
+            "
+            @click="emitToParent"
+          >
+            OK
+          </button>
+        </div>
+        <div class="flex justify-end pt-2" v-else-if="action">
           <button
             class="
               focus:outline-none
@@ -62,7 +78,8 @@
               bg-gray-400
               p-3
               rounded-lg
-              text-black
+              text-white
+              font-bold
               hover:bg-gray-300
             "
           >
@@ -76,6 +93,7 @@
               p-3
               ml-3
               rounded-lg
+              font-bold
               text-white
               hover:bg-teal-400
             "
@@ -92,7 +110,15 @@
 export default {
   props: {
     header: { type: String, default: "" },
-    action: { type: Boolean, default: true },
+    action: { default: true },
+  },
+  data: () => ({
+    modal: true,
+  }),
+  methods: {
+    emitToParent() {
+      this.$emit("actionClidked", { status: false });
+    },
   },
 };
 </script>

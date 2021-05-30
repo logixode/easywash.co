@@ -1,5 +1,5 @@
 <template>
-  <div class="my-1 py-3" @click="$router.push(`/app/setting/${title}`)">
+  <button class="px-6 my-1 py-3 w-full">
     <div class="flex">
       <div
         class="h-11 w-11 rounded-full flex justify-center items-center"
@@ -21,7 +21,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </button>
 </template>
 
 <script>

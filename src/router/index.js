@@ -12,68 +12,89 @@ import Profil from "../views/Profil.vue";
 import DetailPesanan from "../views/DetailPesanan.vue";
 import LaundryType from "../views/Laundry/LaundryType.vue";
 import MitraInfo from "../views/Laundry/MitraInfo.vue";
+import { auth } from "../firebase";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     name: "Login",
     component: Login,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
     path: "/register",
     name: "Register",
     component: Register,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
     path: "/onboarding",
     name: "Onboarding",
     component: Onboarding,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
-    path: "/app",
+    path: "/",
     name: "Home",
     component: Home,
-    children: [],
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
-    path: "/app/rekomendasi",
+    path: "/rekomendasi",
     name: "Rekomendasi",
     component: Rekomendasi,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
-    path: "/app/riwayat",
+    path: "/riwayat",
     name: "Riwayat",
     component: Riwayat,
   },
   {
-    path: "/app/pesan",
+    path: "/pesan",
     name: "Pesan",
     component: Pesan,
   },
   {
-    path: "/app/Profil",
+    path: "/profil",
     name: "Profil",
     component: Profil,
   },
   {
-    path: "/app/detail_pesanan/:id",
+    path: "/detail_pesanan/:id",
     name: "Detail Pesanan",
     component: DetailPesanan,
   },
   {
-    path: "/app/laundry/:type",
+    path: "/laundry/:type",
     name: "Laundry",
     component: LaundryType,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
-    path: "/app/mitra/:id",
+    path: "/mitra/:id",
     name: "Laundry Mitra Info",
     component: MitraInfo,
+    meta: {
+      withoutAuth: true,
+    },
   },
   {
-    path: "/app/setting",
+    path: "/setting",
     name: "Setting",
     component: Setting,
   },
@@ -91,6 +112,22 @@ router.beforeEach((to, from, next) => {
   // console.log("to: ", to);
   // console.log("from: ", from);
   // console.log("next: ", next);
+});
+
+router.beforeResolve((to, from, next) => {
+  const withoutAuth = to.matched.some((record) => record.meta.withoutAuth);
+  const isLoggedIn = auth().currentUser;
+
+  if (!withoutAuth && !isLoggedIn) {
+    next("/login");
+  } else next();
+  //   if ((withoutAuth && !isLoggedIn) || (!withoutAuth && isLoggedIn)) {
+  //     next();
+  //   } else if (withoutAuth && isLoggedIn) {
+  //     // to root
+  //     next("/");
+  //   }
+  //   //   // console.log(from);
 });
 
 export default router;

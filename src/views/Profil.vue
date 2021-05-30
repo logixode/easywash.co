@@ -19,8 +19,8 @@
       </button> -->
     </div>
 
-    <div class="bg-white px-6 pt-5 pb-3 shadow-md mb-3">
-      <h2>Pengaturan Akun</h2>
+    <div class="bg-white pt-5 pb-3 shadow-md mb-3">
+      <h2 class="px-6">Pengaturan Akun</h2>
       <menu-list
         icon="fa fa-home"
         title="Alamat"
@@ -33,15 +33,19 @@
       ></menu-list>
     </div>
 
-    <div class="bg-white px-6 pt-5 pb-3 shadow-md mb-3">
-      <h2>Seputar Laundry</h2>
+    <div class="bg-white pt-5 pb-3 shadow-md mb-3">
+      <h2 class="px-6">Seputar Laundry</h2>
       <menu-list icon="fa fa-info" title="Kenali Laundry"></menu-list>
       <menu-list icon="fa fa-book" title="Syarat dan ketentuan"></menu-list>
       <menu-list icon="fa fa-shield" title="Kebijakan Privasi"></menu-list>
       <menu-list icon="fa fa-star" title="Ulas Aplikasi"></menu-list>
     </div>
-    <div class="bg-white px-6 pt-2 shadow-md">
-      <menu-list icon="fa fa-sign-out" title="Keluar"></menu-list>
+    <div class="bg-white pt-2 shadow-md">
+      <menu-list
+        icon="fa fa-sign-out"
+        title="Keluar"
+        @click.native="logout"
+      ></menu-list>
 
       <!-- Navbar -->
       <Navbar class="px-6" />
@@ -52,12 +56,25 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import MenuList from "@/components/MenuList.vue";
+import { auth } from "../firebase";
 
 export default {
   name: "Home",
   components: {
     Navbar,
     MenuList,
+  },
+  methods: {
+    logout() {
+      auth()
+        .signOut()
+        .then(() => {
+          this.$router.push("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

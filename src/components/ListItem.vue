@@ -1,7 +1,7 @@
 <template>
   <div
     class="item-list mb-5 mt-2 p-2 card-border flex"
-    @click="$router.push(`/app/mitra/${id}`)"
+    @click="$router.push(`/mitra/${id}`)"
   >
     <img
       :src="img"

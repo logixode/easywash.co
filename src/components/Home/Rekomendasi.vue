@@ -2,7 +2,7 @@
   <div class="">
     <div class="flex justify-between mb-1">
       <h1 class="pt-1">Rekomendasi</h1>
-      <router-link to="/app/rekomendasi">
+      <router-link to="/rekomendasi">
         <button class="btn-transparent">Lihat Semua</button>
       </router-link>
     </div>

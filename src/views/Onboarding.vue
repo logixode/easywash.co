@@ -19,7 +19,7 @@
       </button>
     </template>
     <template v-else>
-      <router-link to="/">
+      <router-link to="/login">
         <button @click="notFirstTime" class="w-full mt-24 mb-5 btn btn-black">
           LOGIN
         </button>

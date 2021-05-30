@@ -75,6 +75,9 @@
   .btn-primary {
     @apply bg-teal-500 text-white;
   }
+  .btn-info {
+    @apply bg-blue-500 text-white;
+  }
   .btn-black {
     @apply bg-black text-white;
   }
