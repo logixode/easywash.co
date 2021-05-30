@@ -12,7 +12,7 @@ export default new Vuex.Store({
     uid: null,
     error: null,
     loading: false,
-    verified: true,
+    verified: false,
   },
   mutations: {
     setUser(state, payload) {
@@ -52,7 +52,7 @@ export default new Vuex.Store({
     },
     autoSignIn({ commit, state, dispatch }, payload) {
       if (!state.user) {
-        if (!payload.emailVerified) commit("isVerified", false);
+        if (payload.emailVerified) commit("isVerified", true);
 
         commit("setLoading", true);
         dispatch("getUserData", payload.uid);

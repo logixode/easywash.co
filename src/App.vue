@@ -10,9 +10,24 @@
         <p class="text-lg">
           Silahkan cek email anda untuk melakukan verifikasi.
         </p>
-        <button @click="$router.go()" class="btn btn-primary w-full mt-3 -mb-3">
-          Refresh
-        </button>
+        <div class="flex">
+          <div class="w-1/2 pr-2">
+            <button
+              @click="isVerified = true"
+              class="btn bg-gray-400 text-white mt-3 -mb-3 w-full"
+            >
+              Tutup
+            </button>
+          </div>
+          <div class="w-1/2 pl-2">
+            <button
+              @click="$router.go()"
+              class="btn btn-primary mt-3 w-full -mb-3"
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
       </modal>
     </transition>
 
@@ -50,8 +65,13 @@ export default {
     loading() {
       return this.$store.state.loading;
     },
-    isVerified() {
-      return this.$store.state.verified;
+    isVerified: {
+      get() {
+        return this.$store.state.verified;
+      },
+      set(val) {
+        this.$store.commit("isVerified", val);
+      },
     },
   },
   watch: {
