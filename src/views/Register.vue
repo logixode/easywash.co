@@ -131,8 +131,9 @@
         </button>
         <p class="text-center text-gray">Atau</p>
         <button
+          type="button"
           class="border-2 border-gray-200 w-full btn my-3 flex justify-center"
-          @click="loginGoogle"
+          @click="registerWithGoogle"
         >
           <img
             src="../assets/img/google-icon.svg"
@@ -246,9 +247,11 @@ export default {
           await this.$store.commit("setLoading", false);
           await db
             .collection("users")
-            .add(user)
-            .then(() => {
-              this.$store.commit("setUser", user);
+            .doc(user.uid)
+            .set(user)
+            .then(async () => {
+              await this.$store.commit("setUser", user);
+              await this.$store.commit("isVerified", val.user.emailVerified);
               this.showModal = true;
               setTimeout(() => {
                 this.$router.push("/");
@@ -267,36 +270,19 @@ export default {
     actionChildClicked(val) {
       this.showModal = val.status;
     },
-    loginGoogle() {
-      // var provider = new auth.GoogleAuthProvider();
-      // auth
-      //   .signInWithPopup(provider)
-      //   .then((result) => {
-      //     /** @type {firebase.auth.OAuthCredential} */
-      //     var credential = result.credential;
-      //     // This gives you a Google Access Token. You can use it to access the Google API.
-      //     var token = credential.accessToken;
-      //     // // The signed-in user info.
-      //     var user = result.user;
-      //     console.log("credential", credential);
-      //     console.log("token", token);
-      //     console.log("user", user);
-      //     // ...
-      //   })
-      //   .catch((error) => {
-      //     // Handle Errors here.
-      //     var errorCode = error.code;
-      //     var errorMessage = error.message;
-      //     // // The email of the user's account used.
-      //     var email = error.email;
-      //     // // The firebase.auth.AuthCredential type that was used.
-      //     var credential = error.credential;
-      //     // ...
-      //     console.log("error", errorCode);
-      //     console.log("error msg", errorMessage);
-      //     console.log("email", email);
-      //     console.log("credential", credential);
-      //   });
+    signInWithGoogle() {
+      this.$store
+        .dispatch("registerWithGoogle")
+        .then(() => {
+          this.showModal = true;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2500);
+        })
+        .catch((error) => {
+          this.errors.register.status = true;
+          this.errors.register.msg = error.message;
+        });
     },
   },
 };

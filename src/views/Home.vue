@@ -3,7 +3,7 @@
     <!-- header app -->
     <div class="flex text-white header-app mb-6 px-6">
       <div class="text-left flex-1">
-        <h2 class="clamp-1">Hai, Rohmad Kurniadi</h2>
+        <h2 class="clamp-1">Hai, {{ name }}</h2>
         <p class="clamp-1">
           <span>
             <i class="fa fa-map-marker"></i>
@@ -16,10 +16,24 @@
         <button class="btn-icon mr-1">
           <i class="fa fa-bell text-2xl"></i>
         </button>
+        <div
+          class="
+            h-12
+            w-12
+            flex
+            items-center
+            rounded-full
+            bg-gray-100 bg-opacity-30
+          "
+          v-if="!profilePicture"
+        >
+          <i class="fa fa-user text-2xl mx-auto"></i>
+        </div>
         <img
-          src="../assets/img/profile.jpg"
+          :src="profilePicture"
           alt=""
           class="profile-image h-12 border-4 border-gray-300 border-opacity-50"
+          v-else
         />
       </div>
     </div>
@@ -53,6 +67,20 @@ export default {
     Rekomendasi,
     Tips,
     Navbar,
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
+    },
+    name() {
+      return this.user?.name;
+    },
+    location() {
+      return this.user?.location;
+    },
+    profilePicture() {
+      return this.user?.profilePicture;
+    },
   },
 };
 </script>

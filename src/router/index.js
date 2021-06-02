@@ -118,9 +118,10 @@ router.beforeResolve((to, from, next) => {
   const withoutAuth = to.matched.some((record) => record.meta.withoutAuth);
   const isLoggedIn = auth().currentUser;
 
-  if (!withoutAuth && !isLoggedIn) {
-    next("/login");
-  } else next();
+  if (!withoutAuth && !isLoggedIn) next("/login");
+  else if ((to.path == "/login" || to.path == "/register") && isLoggedIn)
+    next("/");
+  else next();
   //   if ((withoutAuth && !isLoggedIn) || (!withoutAuth && isLoggedIn)) {
   //     next();
   //   } else if (withoutAuth && isLoggedIn) {

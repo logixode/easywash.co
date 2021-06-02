@@ -71,6 +71,7 @@
         <alert-msg v-if="errors.login.status" type="error">{{
           errors.login.msg
         }}</alert-msg>
+        <alert-msg v-if="authStatus" type="error">{{ authStatus }}</alert-msg>
 
         <div class="text-right">
           <router-link to="/forgot-password" class="text-gray"
@@ -82,7 +83,8 @@
         </button>
         <p class="text-center text-gray">Atau</p>
         <button
-          type="submit"
+          type="button"
+          @click="signInWithGoogle"
           class="border-2 border-gray-200 w-full btn my-3 flex justify-center"
         >
           <img
@@ -142,6 +144,12 @@ export default {
       password: { required, min: minLength(6) },
     },
   },
+
+  computed: {
+    authStatus() {
+      return this.$store.state.authStatus;
+    },
+  },
   methods: {
     submit() {
       let form = this.$v.form;
@@ -171,6 +179,20 @@ export default {
           this.errors.login.status = true;
           this.errors.login.msg = error.message;
           console.log(error);
+        });
+    },
+    signInWithGoogle() {
+      this.$store
+        .dispatch("registerWithGoogle")
+        .then(() => {
+          this.showModal = true;
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2500);
+        })
+        .catch((error) => {
+          this.errors.login.status = true;
+          this.errors.login.msg = error.message;
         });
     },
   },
