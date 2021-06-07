@@ -12,6 +12,9 @@ import Profil from "../views/Profil.vue";
 import DetailPesanan from "../views/DetailPesanan.vue";
 import LaundryType from "../views/Laundry/LaundryType.vue";
 import MitraInfo from "../views/Laundry/MitraInfo.vue";
+import Tentang from "../views/Tentang.vue";
+import SnK from "../views/SnK.vue";
+import KebijakanPrivasi from "../views/KebijakanPrivasi.vue";
 import { auth } from "../firebase";
 
 Vue.use(VueRouter);
@@ -97,6 +100,21 @@ const routes = [
     path: "/setting",
     name: "Setting",
     component: Setting,
+  },
+  {
+    path: "/tentang",
+    name: "Tentang Kami",
+    component: Tentang,
+  },
+  {
+    path: "/s&k",
+    name: "Syarat & Ketentuan",
+    component: SnK,
+  },
+  {
+    path: "/kebijakan_privasi",
+    name: "Kebijaakn Privasi",
+    component: KebijakanPrivasi,
   },
 ];
 

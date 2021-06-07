@@ -63,9 +63,21 @@
 
     <div class="bg-white pt-5 pb-3 shadow-md mb-3">
       <h2 class="px-5">Seputar Laundry</h2>
-      <menu-list icon="fa fa-info" title="Tentang Kami"></menu-list>
-      <menu-list icon="fa fa-book" title="Syarat dan ketentuan"></menu-list>
-      <menu-list icon="fa fa-shield" title="Kebijakan Privasi"></menu-list>
+      <menu-list
+        icon="fa fa-info"
+        title="Tentang Kami"
+        @click.native="goto('/tentang')"
+      ></menu-list>
+      <menu-list
+        icon="fa fa-book"
+        title="Syarat dan ketentuan"
+        @click.native="goto('s&k')"
+      ></menu-list>
+      <menu-list
+        icon="fa fa-shield"
+        title="Kebijakan Privasi"
+        @click.native="goto('kebijakan_privasi')"
+      ></menu-list>
       <!-- <menu-list icon="fa fa-star" title="Ulas Aplikasi"></menu-list> -->
     </div>
     <div class="bg-white pt-2 shadow-md">
@@ -120,6 +132,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    goto(val) {
+      this.$router.push(`/${val}`);
     },
   },
 };
