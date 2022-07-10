@@ -1,12 +1,89 @@
 <template>
-  <div id="app" class="h-screen">
-    <!-- <div id="nav" class="py-24">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
-    <router-view />
+  <div
+    id="app"
+    class="h-screen"
+    style="overflow-x: hidden; position: relative; width: 100vw"
+  >
+    <transition name="fade">
+      <modal :action="false" v-show="!isVerified">
+        <verifikasi type="gagal">Akun belum terverifikasi</verifikasi>
+        <p class="text-lg">
+          Silahkan cek email anda untuk melakukan verifikasi.
+        </p>
+        <div class="flex">
+          <div class="w-1/2 pr-2">
+            <button
+              @click="isVerified = true"
+              class="btn bg-gray-400 text-white mt-3 -mb-3 w-full"
+            >
+              Tutup
+            </button>
+          </div>
+          <div class="w-1/2 pl-2">
+            <button
+              @click="$router.go()"
+              class="btn btn-primary mt-3 w-full -mb-3"
+            >
+              Refresh
+            </button>
+          </div>
+        </div>
+      </modal>
+    </transition>
+
+    <transition name="fade">
+      <loading v-show="loading"></loading>
+    </transition>
+
+    <transition name="fade" v-if="isOffline">
+      <offline />
+    </transition>
+
+    <transition name="fade" v-else>
+      <router-view />
+    </transition>
   </div>
 </template>
+
+<script>
+import Offline from "@/components/Offline";
+import Verifikasi from "@/components/Verifikasi";
+import Modal from "@/components/Modal";
+import Loading from "@/components/Loading";
+
+export default {
+  components: {
+    Offline,
+    Verifikasi,
+    Modal,
+    Loading,
+  },
+  data: () => ({}),
+  mounted() {},
+
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    },
+    isVerified: {
+      get() {
+        return this.$store.state.verified;
+      },
+      set(val) {
+        this.$store.commit("isVerified", val);
+      },
+    },
+  },
+  watch: {
+    $route() {
+      this.changeTitleName();
+    },
+  },
+  created() {
+    this.changeTitleName();
+  },
+};
+</script>
 
 <style>
 #app {
@@ -28,5 +105,14 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

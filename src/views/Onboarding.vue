@@ -13,28 +13,22 @@
     <template v-if="page != content.length">
       <button
         @click="next"
-        class="bg-black w-20 h-20 rounded-full text-white text-xl mx-auto mt-24"
+        class="bg-black w-20 h-20 rounded-full text-white mx-auto mt-24"
       >
-        -
+        <i class="fa fa-arrow-right text-3xl"></i>
       </button>
     </template>
     <template v-else>
-      <a href="/">
-        <button
-          @click="notFirstTime"
-          class="bg-black w-full py-4 rounded-xl border-2 border-black text-white text-md mx-auto font-bold mt-24 mb-5"
-        >
+      <router-link to="/login">
+        <button @click="notFirstTime" class="w-full mt-24 mb-5 btn btn-black">
           LOGIN
         </button>
-      </a>
-      <a href="/#/register/">
-        <button
-          @click="notFirstTime"
-          class="w-full py-4 rounded-xl border-green-500 border-2 text-green-500 text-md mx-auto font-bold"
-        >
+      </router-link>
+      <router-link to="/register">
+        <button @click="notFirstTime" class="w-full btn btn-outline-primary">
           REGISTER
         </button>
-      </a>
+      </router-link>
     </template>
   </div>
 </template>
@@ -47,20 +41,17 @@ export default {
       {
         img: "tracking",
         title: "Tracking",
-        body:
-          "Kamu bisa melakukan tracking melalui detail pesanan jadi kamu bisa terus memantau proses pencucian dan jika ada keluhan bisa contact mitra laundry.",
+        body: "Kamu bisa melakukan tracking melalui detail pesanan jadi kamu bisa terus memantau proses pencucian dan jika ada keluhan bisa contact mitra laundry.",
       },
       {
         img: "jaminan-kualitas",
         title: "Jaminan Cucian",
-        body:
-          "Jika cuci di official laundry kami memberikan jaminan barang cucian jika ada kerusakan atau barang cucian hilang uang akan kami kembalikan 100%.",
+        body: "Jika cuci di official laundry kami memberikan jaminan barang cucian jika ada kerusakan atau barang cucian hilang uang akan kami kembalikan 100%.",
       },
       {
         img: "easy-payment",
         title: "Mudah Pembayaran",
-        body:
-          "Laundry menyediakan banyak pilihan pembayaran seperti bank virtual account, cash, pembayaran online lainya dan dijamin keamanannya.",
+        body: "Laundry menyediakan banyak pilihan pembayaran seperti bank virtual account, cash, pembayaran online lainya dan dijamin keamanannya.",
       },
     ],
   }),
@@ -75,5 +66,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
